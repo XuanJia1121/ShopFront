@@ -2,9 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import store from "../store";
 //view
-import MyShop from "../components/MyShop.vue";
-import Login from "../components/LoginState.vue";
-import ShopCart from "../components/ShopCart.vue";
+import HomePage from "../components/HomePage.vue";
 
 const includPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -18,29 +16,8 @@ const routes = [
   {
     //預設
     path: "/",
-    name: "Shop",
-    component: MyShop,
-  },
-  {
-    //登入
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
-  {
-    //商店
-    path: "/shop",
-    name: "Shop",
-    component: MyShop,
-  },
-  {
-    //購物車
-    path: "/shopCart",
-    name: "ShopCart",
-    component: ShopCart,
-    meta: {
-      requireAuth: true
-    }
+    name: "Home",
+    component: HomePage,
   },
   {
     //都不符合導至預設

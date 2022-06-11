@@ -16,10 +16,10 @@
         </div>
         <div class="col-2 d-flex  p-3 justify-content-end">
           <el-row v-if="!isLogin">
-            <el-button @click="loginBeforeCheck()" id="auth" type="danger" icon="el-icon-s-custom" circle></el-button>
+            <el-button @click="login()" id="auth" type="danger" icon="el-icon-s-custom" circle></el-button>
           </el-row>
           <div v-if="isLogin" id="loginUser" class="d-flex align-items-center">
-            XXXX 你好！
+            {{USER_INFO.name}} 你好！
           </div>
         </div>
       </div>
@@ -81,22 +81,23 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 /* eslint-disable */
 
 export default {
   data() {
     return {
       isLogin:false,
-
     };
   },
   methods: {
-    loginBeforeCheck(){
-      this.$alert('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
-          dangerouslyUseHTMLString:true
-        });
+    login(){
+      this.$router.push("/login");
     }
-  },
+  }, 
+  computed:{
+    ...mapGetters(['USER_INFO'])
+  }
 };
 </script>
 

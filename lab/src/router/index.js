@@ -3,6 +3,7 @@ import Router from "vue-router";
 import store from "../store";
 //view
 import HomePage from "../components/HomePage.vue";
+import LoginPage from "../components/LoginPage.vue";
 
 const includPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -18,6 +19,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomePage,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: LoginPage,
   },
   {
     //都不符合導至預設

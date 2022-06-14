@@ -7,7 +7,7 @@
             <div class="container">
             <div class="row">
                 <div class="col-4">
-                <h1 id="title" class="p-2">UrShop</h1>
+                <h1 @click="toHome()" id="title" class="p-2">UrShop</h1>
                 </div>
             </div>
             </div>
@@ -84,13 +84,16 @@ export default {
         ...mapActions(['callLoginApi','callGoogleLogin']),
         baseLogin(){
             this.callLoginApi(this.userData)
-            .then(res => {
-               console.log(res);
+            .then(() => {
+               this.toHome();
             })
             .catch(err => {
-                console.log(err);
+                this.loginErrMsg = err.data.msg;
             });
         },
+        toHome(){
+            this.$router.push("/");
+        }
     },
 }
 </script>

@@ -4,6 +4,8 @@ import store from "../store";
 //view
 import HomePage from "../components/HomePage.vue";
 import LoginPage from "../components/LoginPage.vue";
+import ShopCart from "../components/ShopCart.vue";
+
 
 const includPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -26,6 +28,14 @@ const routes = [
     component: LoginPage,
   },
   {
+    path: "/cart",
+    name: "Cart",
+    meta:{
+      requireAuth:true
+    },
+    component:ShopCart
+  },
+  {
     //都不符合導至預設
     path: "*",
     redirect: "/",
@@ -42,7 +52,7 @@ router.beforeEach((to, from, next) => {
   //路由需要認證
   if (to.meta.requireAuth) {
     //判斷store裡是否有token
-    if (store.state.token) {
+    if (Object.keys(store.state.userinfo).length != 0) {
       next();
     } else {
       next({path: '/login',})

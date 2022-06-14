@@ -10,7 +10,7 @@
         </div>
         <div class="col-6 d-flex  p-3 justify-content-end">
           <el-row>
-            <el-button type="warning" icon="el-icon-shopping-cart-1" circle></el-button>
+            <el-button @click="toCart()" type="warning" icon="el-icon-shopping-cart-1" circle></el-button>
             <el-button type="info" icon="el-icon-message-solid" circle></el-button>
           </el-row>
         </div>
@@ -19,13 +19,22 @@
             <el-button @click="login()" id="auth" type="danger" icon="el-icon-s-custom" circle></el-button>
           </el-row>
           <div v-if="IS_LOGIN" id="loginUser" class="d-flex align-items-center">
-            {{USER_INFO.username}} 你好！
+             <el-popover placement="top" width="160" v-model="visible">
+              <p>確定登出嗎？</p>
+              <div style="text-align: right; margin: 0">
+                <el-button size="mini" type="text" @click="visible = false">取消</el-button>
+                <el-button type="primary" size="mini" @click="loginOut()">确定</el-button>
+              </div>
+              <el-button slot="reference" type="primary" round>
+                <font class="text-black">{{USER_INFO.username}}</font>
+             </el-button>
+            </el-popover>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  
   <!-- nav -->
   <div class="nav justify-content-center bg-light">
     <nav class="navbar navbar-expand-lg navbar-light ">
@@ -77,27 +86,41 @@
     </div>
   </div>
 
+ 
+
 </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import {mapGetters,mapActions} from 'vuex';
 /* eslint-disable */
 
 export default {
   data() {
     return {
-
+      visible: false,
     };
   },
   methods: {
+    ...mapActions(['callLogOutApi']),
     login(){
       this.$router.push("/login");
+    },
+    loginOut(){
+      this.visible = false;
+      this.callLogOutApi(this.USER_INFO).then(function(){
+        this.$router.push("/");
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    toCart(){
+      this.$router.push("/cart");
     }
   }, 
   computed:{
     ...mapGetters(['USER_INFO','IS_LOGIN'])
-  }
+  },
 };
 </script>
 

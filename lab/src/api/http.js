@@ -21,6 +21,12 @@ export const loginApi = (data) => {
     });
 };
 
+export const loginOutApi = (data) => {
+  return loginRequest.post('/logout.action',{
+    username:data.username
+  });
+}
+
 // export const googleLoginApi = () => {
 //   return axios.get('http://localhost:8087/lab/oauth2/authorization/google');
 // };

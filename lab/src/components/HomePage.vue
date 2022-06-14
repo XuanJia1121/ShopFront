@@ -15,11 +15,11 @@
           </el-row>
         </div>
         <div class="col-2 d-flex  p-3 justify-content-end">
-          <el-row v-if="!isLogin">
+          <el-row v-if="!IS_LOGIN">
             <el-button @click="login()" id="auth" type="danger" icon="el-icon-s-custom" circle></el-button>
           </el-row>
-          <div v-if="isLogin" id="loginUser" class="d-flex align-items-center">
-            {{USER_INFO.name}} 你好！
+          <div v-if="IS_LOGIN" id="loginUser" class="d-flex align-items-center">
+            {{USER_INFO.username}} 你好！
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@ import {mapGetters} from 'vuex';
 export default {
   data() {
     return {
-      isLogin:false,
+
     };
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
     }
   }, 
   computed:{
-    ...mapGetters(['USER_INFO'])
+    ...mapGetters(['USER_INFO','IS_LOGIN'])
   }
 };
 </script>

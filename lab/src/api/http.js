@@ -21,6 +21,6 @@ export const loginApi = (data) => {
     });
 };
 
-export const googleLoginApi = () => {
-  return loginRequest.get('http://localhost:8087/lab/oauth2/authorization/google');
-};
+// export const googleLoginApi = () => {
+//   return axios.get('http://localhost:8087/lab/oauth2/authorization/google');
+// };

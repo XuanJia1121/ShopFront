@@ -91,15 +91,6 @@ export default {
                 console.log(err);
             });
         },
-        googleLogin(){
-             this.callGoogleLogin()
-            .then(res => {
-               console.log(res);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        }
     },
 }
 </script>

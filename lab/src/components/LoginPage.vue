@@ -84,9 +84,7 @@ export default {
         ...mapActions(['callLoginApi','callGoogleLogin']),
         baseLogin(){
             this.callLoginApi(this.userData)
-            .then(() => {
-               this.toHome();
-            })
+            .then(this.toHome())
             .catch(err => {
                 this.loginErrMsg = err.data.msg;
             });
